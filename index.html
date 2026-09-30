@@ -1,18 +1,303 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First GitHub Website</title>
-</head>
+<title>Broward Private Offices</title>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#F2F5F6;--panel:#FFFFFF;--ink:#15232B;--muted:#5A6A73;--line:#D9E1E5;
+  --land:#EEF1EA;--water:#CADDE7;--road:#C39E62;--label:#6D7C85;
+  --ind:#0B7A83;--iwg:#6A788C;--home:#D4461A;--ok:#1C7A38;--okbg:#E2F2E6;--ask:#8A5A00;--askbg:#FAEFD6;--new:#B0306A;--newbg:#FBE4EF;
+  --sans:"IBM Plex Sans",-apple-system,system-ui,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0E161B;--panel:#16222A;--ink:#E4ECF0;--muted:#96A7B0;--line:#2A3A44;--land:#1B2930;--water:#0B1E29;--road:#8C7246;--label:#8898A1;
+  --ind:#3BB7C0;--iwg:#95A3B6;--home:#FF7A45;--ok:#6FD08A;--okbg:#173524;--ask:#F0C065;--askbg:#3A2E12;--new:#F48CBC;--newbg:#3D1A2B}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0E161B;--panel:#16222A;--ink:#E4ECF0;--muted:#96A7B0;--line:#2A3A44;--land:#1B2930;--water:#0B1E29;--road:#8C7246;--label:#8898A1;
+  --ind:#3BB7C0;--iwg:#95A3B6;--home:#FF7A45;--ok:#6FD08A;--okbg:#173524;--ask:#F0C065;--askbg:#3A2E12;--new:#F48CBC;--newbg:#3D1A2B}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);padding-inline:16px;padding-block:16px 48px;-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;display:grid;gap:14px}
+h1{font-size:21px;line-height:1.25;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;font-size:13.5px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding-block:8px;margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.seg button{font:500 13px var(--sans);color:var(--ink);background:none;border:0;padding:8px 12px;min-height:36px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.tog{display:inline-flex;align-items:center;gap:6px;font-size:13px;border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:var(--panel);min-height:36px}
+.tog input{width:18px;height:18px;accent-color:var(--ind);margin:0}
+.stat{font-size:12.5px;color:var(--muted)}.stat b{color:var(--ink);font-family:var(--mono)}
+.mapbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.maphead{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;gap:8px;flex-wrap:wrap}
+.maphead .k{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+svg.map{display:block;width:100%;height:auto;background:var(--water);touch-action:manipulation}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:8px 10px;border-top:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;vertical-align:-1px;margin-right:4px}
+.list{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px;scroll-margin-top:120px}
+.card.sel{outline:2px solid var(--ind);outline-offset:1px}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card h3{margin:0;font-size:16px;line-height:1.3}
+.addr{color:var(--muted);font-size:13px}
+.price{font:600 17px var(--mono);white-space:nowrap;text-align:right}
+.price small{display:block;font:400 11px var(--sans);color:var(--muted)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid var(--line);white-space:nowrap}
+.c-ok{background:var(--okbg);color:var(--ok);border-color:transparent}.c-ask{background:var(--askbg);color:var(--ask);border-color:transparent}
+.c-new{background:var(--newbg);color:var(--new);border-color:transparent}
+.hrs{font-size:13px}
+.txt{font-size:13.5px;margin:0}
+.caut{font-size:13px;margin:0;color:var(--ask)}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:600 13px var(--sans);text-decoration:none;text-align:center;padding:6px 8px;cursor:pointer}
+.btn.pri{background:var(--ind);border-color:var(--ind);color:#fff}
+.phone{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px}
+.phone .num{font-family:var(--mono);user-select:all;-webkit-user-select:all}
+.copy{font:500 12px var(--sans);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:4px 10px;min-height:30px;cursor:pointer}
+details{border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ind);min-height:32px;display:flex;align-items:center}
+.lst{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.lst a{font:500 12.5px var(--mono);color:var(--ind);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 9px}
+.lst a.n{border-color:var(--new);color:var(--new)}
+textarea{width:100%;min-height:56px;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}
+.foot{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.foot ul{margin:6px 0 0;padding-left:18px}
+:focus-visible{outline:2px solid var(--ind);outline-offset:2px}
+@media (min-width:700px){.acts{grid-template-columns:repeat(4,1fr)}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
 
-<body>
+<div class="wrap">
+  <header>
+    <h1>Private offices in Broward County, under $1,000/mo</h1>
+    <p class="sub">Craigslist listings pulled and read on Tue, Sep 29, 2026. Private, lockable rooms only; coworking, desks and virtual offices removed. "Hours" checks each ad against your 7:30 am–7 pm weekday schedule. Miles are straight-line from Cortland Hollywood.</p>
+  </header>
 
-    <h1>My First GitHub Website</h1>
+  <div class="bar" role="group" aria-label="Filters">
+    <div class="row">
+      <div class="seg" role="group" aria-label="Operator">
+        <button type="button" id="op-all" aria-pressed="true">All</button>
+        <button type="button" id="op-ind" aria-pressed="false">Independent</button>
+        <button type="button" id="op-iwg" aria-pressed="false">Regus / HQ</button>
+      </div>
+      <div class="seg" role="group" aria-label="Sort">
+        <button type="button" id="s-d" aria-pressed="true">Nearest</button>
+        <button type="button" id="s-p" aria-pressed="false">Cheapest</button>
+      </div>
+    </div>
+    <div class="row">
+      <label class="tog"><input type="checkbox" id="f-hours">Hours confirmed</label>
+      <label class="tog"><input type="checkbox" id="f-near">Within 10 mi</label>
+      <span class="stat" id="stat"></span>
+    </div>
+  </div>
 
-    <p>
-        If you can see this page, GitHub Pages is working.
-    </p>
+  <div class="mapbox">
+    <div class="maphead">
+      <span class="k">Map · tap a pin</span>
+      <div class="seg" role="group" aria-label="Map view">
+        <button type="button" id="v-near" aria-pressed="true">Near Cortland</button>
+        <button type="button" id="v-all" aria-pressed="false">All Broward</button>
+      </div>
+    </div>
+    <svg class="map" id="map" role="img" aria-label="Simplified map of office buildings around Cortland Hollywood"></svg>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--home)"></span>Cortland</span>
+      <span><span class="dot" style="background:var(--ind)"></span>Independent</span>
+      <span><span class="dot" style="background:var(--iwg)"></span>Regus / HQ</span>
+      <span><span class="dot" style="background:transparent;border:2px solid var(--ask)"></span>Ask hours</span>
+      <span>Coast and highways are drawn approximately. Use "Directions" for the real map.</span>
+    </div>
+  </div>
 
-</body>
-</html>
+  <div class="list" id="list"></div>
+
+  <div class="foot">
+    <b>Changes since Sep 28</b>
+    <ul id="changes"></ul>
+    <b style="display:block;margin-top:10px">Left out after reading the ads</b>
+    <ul>
+      <li>Coworking, desk and virtual-office posts with "office" titles (12 today).</li>
+      <li>Rooms in a Sunrise chiropractic office: open M/W/F 8:30–6 and T/Th 8:30–1 only.</li>
+      <li>Full 4,200 sf floor at 3201 Griffin Rd: priced per square foot, far over budget.</li>
+      <li>Hourly massage/treatment room on Cypress Creek Rd.</li>
+    </ul>
+    <p style="margin:10px 0 0">Notes save on this device only. Regus/HQ ad prices are usually promotions and change often, so get an all-in quote. Prices at the 1975 E Sunrise Blvd tower are before sales tax.</p>
+  </div>
+</div>
+
+<script>
+const HOME={lat:26.0299641,lon:-80.1662318};
+// id: [name, address, lat, lon, operator, phone, hours ok/ask, hours text, highlights, ask/caution]
+const S={
+ i1:["1975 E Sunrise Blvd office tower","1975 E Sunrise Blvd, Fort Lauderdale",26.137206,-80.120241,"ind","954-306-8431","ok","Building open 7 am–10 pm","Suites of 146–497 sf; several have 2 separate rooms and large windows. Electric, water and trash included. Covered, secured garage parking included. Conference rooms; on-site manager.","Unfurnished. 12-month lease, $50 application fee, 2-month deposit, plus sales tax. Ask about Ethernet and A/C after 7 pm."],
+ i2:["4699 / 4701 N Federal Hwy suites","4699–4701 N Federal Hwy, Pompano Beach",26.289348,-80.095615,"ind","561-364-4140","ask","Not stated","Renovated suites in many sizes, including small private offices. Traditional lease.","Hours, parking, utilities and furniture not stated."],
+ i3:["Davie Executive Offices","6100 Griffin Rd, Davie",26.065166,-80.22807,"ind","954-795-1763","ok","24/7 access; keypad after hours","Renovated. Furnished or unfurnished single-person offices. Big windows. Ample on-site parking. Conference room, lounge.","Offices run $625–$690; confirm the price for a window office. Ask about Ethernet and after-hours A/C."],
+ i4:["Miramar Executive Offices","11820 Miramar Pkwy, Miramar",25.97929,-80.303248,"ind","954-225-3117","ok","24/7 access; keypad entry","Renovated in 2026. Furnished or unfurnished 140–210 sf window offices. Internet, conference room, lounge.","Offices are sized for 2–4 people; ask for the smallest."],
+ i5:["Hallandale Beach executive offices","221 W Hallandale Beach Blvd, Hallandale Beach",25.985469,-80.150691,"ind","","ok","24/7 access","Furnished offices. Month-to-month. Utilities, janitorial and internet included. 2 kitchens, conference rooms, copier.","No phone in the ad; reply through Craigslist. Street parking only, so ask about dedicated spots."],
+ i6:["ZEN Offices @ 300 Las Olas Place","300 SE 2nd St, Suite 600, Fort Lauderdale",26.120464,-80.140667,"ind","954-928-8400","ok","24/7 security and concierge","Interior offices from $500, window offices from $900. Furniture, phone, internet, reception, kitchen, conference room.","Downtown, so parking is probably paid; get the monthly cost."],
+ i7:["Downtown Hollywood executive suites","1926 Hollywood Blvd, Hollywood",26.011468,-80.145771,"ind","561-365-8278","ask","Not stated","Renovated 225–350 sf suites. Month-to-month or annual. Electric, A/C, internet, garbage included.","Ask about building hours, parking (downtown is mostly metered), furniture."],
+ i8:["East Fort Lauderdale office","E Oakland Park Blvd at Bayview Dr, Fort Lauderdale",26.1656,-80.1118,"ind","954-793-9244","ok","24-hour access; controlled entry 5:30 pm–8:30 am","$450 with utilities. Conference room, parking, restaurants on site.","Annual lease. Ask how after-hours entry works, room size and windows."],
+ i9:["1773 N State Road 7 offices","1773 N State Road 7 #102, Lauderhill",26.1487,-80.2035,"ind","","ask","Not stated","150 sf private offices, partly furnished or empty. Lots of parking. Training room with Wi-Fi.","Email only: assistant@smclennon.com. First + last + deposit; free-rent offers need 24–36-month leases."],
+ i10:["Plantation 1–2 person office","Sunrise Blvd near Pine Island Rd, Plantation",26.1502,-80.2745,"ind","","ask","Not stated","Internet, kitchenette, conference room, parking.","No address or phone in the ad; location approximate."],
+ i11:["Pembroke Pines 2nd-floor office","Pines Blvd near 68th Ave, Pembroke Pines",26.0077,-80.2230,"ind","954-999-9990","ask","Not stated","2nd-floor office in a well-kept retail plaza with plenty of parking.","Few details; ask size, hours, utilities, lease. Location approximate."],
+ i12:["Coral Springs Professional Campus","5571 N University Dr, Ste 101, Coral Springs",26.298037,-80.250106,"ind","754-444-1242","ask","Not stated","Independent suites $600–$950. 150 Mbps internet, kitchen, unlimited parking.","The $375 is a shared package; confirm you get your own lockable room."],
+ i13:["Room in a mortgage company office","1700 N University Dr, Ste 304, Plantation",26.146574,-80.257156,"ind","954-709-4659","ask","Not stated","One 9×22 ft room with desks and chairs. Wi-Fi, electricity, conference room included.","Your own room in a shared suite; confirm it locks and when you can get in."],
+ i15:["McNab Rd office / warehouse building","McNab Rd, Pompano Beach",26.21046,-80.156067,"ind","","ask","Not stated","Private offices, kitchen, 3 bathrooms, central A/C, 6 cameras. Loading dock for big deliveries.","No price or phone in the ad; reply through Craigslist."],
+ i16:["Deerfield Beach private office","Deerfield Beach (exact address not given)",26.3124,-80.1412,"ind","","ask","Private entrance (hours not stated)","Room for 2 workstations plus mini kitchen. Private bathroom and private entrance. $950 includes Wi-Fi (Comcast), water, electric, CAM and taxes.","6-month minimum lease. Contact through Craigslist; location approximate."],
+ h1:["Regus – 1895 Tyler St","1895 Tyler St, Hollywood",26.012523,-80.14489,"iwg","305-339-0928","ok","24/7 access (per ads)","Furnished private offices; utilities, cleaning, internet, reception.","On your shortlist. Get the all-in quote."],
+ h2:["HQ – 1930 Harrison St","1930 Harrison St, Hollywood",26.010462,-80.145607,"iwg","305-339-0928","ok","24/7 access (per ads)","Furnished private offices; utilities, cleaning, internet.","On your shortlist."],
+ h3:["Regus – Presidential Circle","4000 Hollywood Blvd, Hollywood",26.011325,-80.184491,"iwg","305-339-0928","ok","24/7 access (per ads)","Furnished private offices; reception, internet.","On your shortlist."],
+ h4:["Regus/HQ – 3501 N Ocean Dr","3501 N Ocean Dr, Hollywood",26.032621,-80.115432,"iwg","305-339-0928","ok","24/7 access (per ads)","Furnished offices; admin and reception; month-to-month offered.","Beachfront, so parking may be paid."],
+ f1:["Regus/HQ – 100 N Federal Hwy","100 N Federal Hwy, Fort Lauderdale",26.123426,-80.137191,"iwg","305-339-0928","ok","24/7 access (per ads)","Lowest ad prices in the list.","Downtown parking cost; low prices are usually interior offices."],
+ f2:["HQ – 110 E Broward Blvd","110 E Broward Blvd, Fort Lauderdale",26.122213,-80.142325,"iwg","305-339-0928","ok","24/7 access (per ads)","Furnished lockable offices; utilities, internet, cleaning.","On your shortlist; downtown parking cost."],
+ f3:["Regus – Galleria","2598 E Sunrise Blvd, Fort Lauderdale",26.137854,-80.110896,"iwg","954-681-8444","ok","24/7 access (per ads)","Furnished private offices.","On your shortlist."],
+ f4:["Regus/HQ – 6750 N Andrews Ave","6750 N Andrews Ave, Fort Lauderdale",26.209553,-80.142837,"iwg","954-681-8444","ok","24/7 access (per ads)","Furnished private offices.","Cypress Creek area."],
+ f5:["Regus/HQ – 6301 NW 5th Way","6301 NW 5th Way, Fort Lauderdale",26.205061,-80.150899,"iwg","954-681-8444","ok","24/7 access (per ads)","Furnished private offices.","Cypress Creek area."],
+ p1:["Regus/HQ – 8201 Peters Rd","8201 Peters Rd, Plantation",26.107275,-80.25992,"iwg","305-399-6165","ok","24/7 access (per ads)","Furnished private offices.",""],
+ s1:["Regus/HQ – Sawgrass Corporate Pkwy","1560 Sawgrass Corporate Pkwy, Sunrise",26.140789,-80.340482,"iwg","305-399-6165","ask","'Secure access' (hours not stated)","Furnished lockable offices; month-to-month offered.","Far west."],
+ w1:["Regus/HQ – 2200 N Commerce Pkwy","2200 N Commerce Pkwy, Weston",26.091412,-80.366764,"iwg","305-359-1347","ok","24/7 access (per ads)","Furnished private offices.","Far west."],
+ c1:["Regus/HQ – Heron Bay","11555 Heron Bay Blvd, Coral Springs",26.309273,-80.295941,"iwg","305-399-6165","ok","24/7 access (per ads)","Furnished private offices.",""],
+ b1:["Regus/HQ – Mizner Park","433 Plaza Real, Boca Raton",26.355082,-80.085489,"iwg","954-681-8444","ask","'Secure access' (hours not stated)","Furnished lockable offices.","Palm Beach County."],
+ b2:["Regus/HQ – 2255 Glades Rd","2255 Glades Rd, Boca Raton",26.368254,-80.126626,"iwg","954-681-8444","ok","24/7 access (per ads)","Furnished private offices.","Palm Beach County."],
+ b3:["Regus/HQ – Park of Commerce","6501 Park of Commerce Blvd, Boca Raton",26.400544,-80.096907,"iwg","954-681-8444","ok","24/7 access (per ads)","Furnished private offices.","Palm Beach County."],
+ d1:["Regus/HQ – 1615 S Congress Ave","1615 S Congress Ave, Delray Beach",26.437831,-80.092346,"iwg","561-693-8005","ok","24/7 access (per ads)","Furnished private offices.","Palm Beach County."],
+ a1:["Regus/HQ – 2875 NE 191st St","2875 NE 191st St, Aventura",25.952267,-80.1441,"iwg","305-326-3021","ok","24/7 access (per ads)","Furnished private offices.","Miami-Dade."],
+ a2:["Regus/HQ – 20801 Biscayne Blvd","20801 Biscayne Blvd, Aventura",25.968337,-80.144779,"iwg","305-326-3021","ok","24/7 access (per ads)","Furnished private offices.","Miami-Dade."],
+ n1:["Regus/HQ – 11900 Biscayne Blvd","11900 Biscayne Blvd, North Miami",25.88595,-80.164867,"iwg","305-326-3021","ok","24/7 access (per ads)","Furnished private offices.","Miami-Dade."],
+ n2:["Regus/HQ – 1801 NE 123rd St","1801 NE 123rd St, North Miami",25.889488,-80.162193,"iwg","305-326-3021","ok","24/7 access (per ads)","Furnished private offices.","Miami-Dade."]
+};
+// [site, price, craigslist slug, new-today flag]
+const LST=[["a2",980,"miami-small-office-deal-10-discount/duTYndkzwAB1jrCwRKjtnw",0],["h1",696,"hollywood-small-office-deal-15-discount/9kWxHp7M81q5tnHMVXYtK5",0],["h3",951,"hollywood-small-private-office-with-15/bAjcccy9vTL18hCeJjoeXw",0],["h4",656,"hollywood-small-office-deal-10-discount/1jHbGpgaufR3xYdiepk3B8",0],["f1",368,"fort-lauderdale-small-private-office/fh9tMC1gVZ1j4bjJNR9NcL",0],["f3",501,"fort-lauderdale-small-office-deal-15/tMojG7euAKw2JfpwmL6b8h",0],["i6",600,"fort-lauderdale-move-in-ready-private/pFmKZQQ1EQNdGH91E2ntkq",0],["i16",950,"deerfield-beach-office-space-with/2UWnyPJJLCm8rUHLfPoHTt",1],["a1",703,"miami-small-office-deal-20-discount/jrAjkxGVSAGJ2Mf7uPZMdi",0],["h2",791,"hollywood-private-office-save-20/vzPEFLCVTJZPjxrwwFwPh3",0],["f2",711,"fort-lauderdale-small-private-office/nat3DZwYo5vYK61YYnHWzj",0],["f5",775,"fort-lauderdale-start-in-small-office/9WMycKeMRAKtD5PXkWkv7G",0],["p1",559,"fort-lauderdale-small-private-office/46u6wFtL2HeoXs3qJ8A12W",0],["b3",629,"boca-raton-start-in-small-office-with/gDM6xhA17V68XXUed3MUvc",0],["n2",794,"miami-private-office-save-25/5YGQeWXaJyFrKY3CXFJgvi",0],["f4",883,"fort-lauderdale-start-in-small-office/vsKDztAwnEaHgvnmm7mfKb",0],["d1",883,"delray-beach-private-office-save/6MUuTZAHn5U9HMouu6wLWS",0],["c1",949,"pompano-beach-office-space-available/vurE6TixTzeTGULQxWKBsq",0],["b1",457,"boca-raton-start-in-small-office-with/hb8Qh617k1LELQ3Nfioboo",0],["s1",737,"fort-lauderdale-small-office-deal-10/hpHsMUaWbeRoQTPkM6Vv9t",0],["n1",751,"miami-private-office-save-20/8F2zrSEsRCrM78Ax8uGPRy",0],["w1",922,"fort-lauderdale-start-in-small-office/1SkkGrL3XTg7WWCVeW3hhC",0],["i1",930,"fort-lauderdale-suite-719-for-rent/cbU4vNxm7e1pV8s3fPDubJ",0],["i2",399,"pompano-beach-office-space-available/n1Z3Vj2GZZiry1uDN9hKNK",0],["b2",656,"boca-raton-small-private-office-with-35/hSGwP8h8Sr69UzZypHVhs9",0],["i11",600,"hollywood-office-space-pembroke-pines/4zfeoArv6NegKaZszySA3K",0],["i1",915,"fort-lauderdale-bright-office-unit-for/id6hvfZAArXYpCUWU1HmZG",0],["i1",530,"fort-lauderdale-520-office-for-rent/rPxKQRasdmNywbJPrnEQeg",0],["c1",949,"pompano-beach-private-office-for-legal/hV7VuibFpVgLeFvWhB4jpZ",0],["n2",794,"miami-private-office-save-25/538qfqeP3dRG5J4q8xJec2",0],["h1",696,"hollywood-small-office-deal-15-discount/wAdDYfyS2i6ixg4tA4EDzu",0],["f1",368,"fort-lauderdale-small-private-office/v5gCetrKv4568phpbS2iHj",0],["f5",775,"fort-lauderdale-start-in-small-office/qDpm2muoY6qFCX4iFMgSpb",0],["f2",711,"fort-lauderdale-small-private-office/odrVKzStYWzatJ7ebYzDPv",0],["s1",737,"fort-lauderdale-small-office-deal-10/riD7QWUH9J3w7BT48L4mRC",0],["b1",457,"boca-raton-start-in-small-office-with/s3Qk2EGVRNu4uwgBdjmgxf",0],["w1",922,"fort-lauderdale-start-in-small-office/dsXXn41yCDWXjjzftT8TyS",0],["f3",501,"fort-lauderdale-small-office-deal-15/wfAfL17te7SdcjBkne9DpM",0],["i15",1,"fort-lauderdale-private-office-space-wh/44tExcpqy23bEv7sQt2Ryi",0],["h3",951,"hollywood-small-private-office-with-15/1NMMfEejTahA3QA1jCmdHv",0],["i10",685,"fort-lauderdale-2-person-office-space/bJ4qG2wUxCAEvNBa4tf6kF",0],["i2",439,"pompano-beach-modern-office-space-for/tCEbhoF8eQAHkYFu1M6vBL",0],["a1",703,"miami-small-office-deal-20-discount/kxdRaGnjRnqXwcBdWmdUmh",0],["i1",906,"fort-lauderdale-charming-corner-suite/gD8DBUpqnjAksCPc16RUUw",0],["i1",931,"fort-lauderdale-office-suite-for-rent/92dKdMMqBZvFCdPAHSygy2",0],["i3",690,"fort-lauderdale-davie-executive-offices/ksYRcdqN3rkTr339cZJjzi",0],["i4",779,"hollywood-miramar-executive-offices-for/tzLH8wTzpUTc5Mg8E4u2ev",0],["i5",800,"hallandale-executive-office-space/5W7sx2e6VJFUYobFPohoA7",0],["b3",629,"boca-raton-start-in-small-office-with/eNWnRaaf8cXzDfDyFyZHAJ",0],["c1",949,"pompano-beach-office-space-wi-fi/uh95VeBrpw6NPBQSSYX2Zq",0],["p1",559,"fort-lauderdale-small-private-office/qhmC5kx3VkRGGoXjSqHp1w",0],["i2",599,"pompano-beach-pompano-beach-office/uPam242uQMwrHpjFbeRTir",0],["i2",499,"pompano-beach-office-space-for-rent/aYHatSv3vkKev9872AbpFD",0],["f3",589,"fort-lauderdale-small-office-deal-15/5iG6LoekQuNdwHCwRbeW2j",0],["h1",819,"hollywood-small-office-deal-15-discount/stegmuuP8QHU3TB56CDmXn",0],["i2",539,"pompano-beach-office-space-for-lease/28Ut4Juen4fJ92p9bN3kL7",0],["i5",800,"hallandale-executive-office-space/99KK6eYeHARLgQGQYMMeNy",0],["h4",620,"hollywood-small-private-office-with-15/r2nEaJUt3jeL1UzfdkqXx5",0],["i1",620,"fort-lauderdale-520-office-for-rent/jE8uBRGb71GFzCG9VyU3Ay",0],["i1",616,"fort-lauderdale-504-office-space-with/enVoVpzwWhTUwi5vd6ELk1",0],["f2",889,"fort-lauderdale-startup-office-small/fuD6wCqBBwX7Rhhrp1oAcb",0],["h1",819,"hollywood-office-space-available/pEEpzZo4N2UZP2Wy2GTvhb",0],["f3",589,"fort-lauderdale-office-space-with/755C26vp46D8TincbHUTza",0],["h2",643,"hollywood-start-in-small-office-with-35/cQ4WwYKBR9jULgV3r97wCx",0],["f1",409,"fort-lauderdale-startup-office-small/nWqMMaSW81BpxtkSdnvaXt",0],["a1",879,"miami-small-office-ready-now-quiet-and/71ZqS3TCGX2m7kZ6LfyZ3g",0],["a1",791,"miami-private-office-deal-10-off/kavUZStLT7JAu5JauwB2Y7",0],["a2",980,"miami-seasonal-discount-on-private/7hcQdhuvxuGK1JQc8JVCCq",0],["h4",729,"hollywood-all-inclusive-office-one/6cuf2KDjnPrVsPzVxdc89z",0],["f2",711,"fort-lauderdale-seasonal-discount-on/pJ4xdZCLw5D8uvzJBx16Vq",0],["f1",409,"fort-lauderdale-private-small-office/rmC7matjezYoBtcd4trjkK",0],["h2",989,"hollywood-private-office-for-legal-and/kcsnZNtrEWxyc6AcsMwyJn",0],["i2",439,"pompano-beach-modern-office-space-for/2bkRqCYoq39jaYAuVcDsKP",0],["h1",614,"hollywood-small-office-deal-25-discount/9SkW2rGG1k6LeCmTZAcegk",0],["f3",501,"fort-lauderdale-private-office-save-15/u1sN5NDWB2htkNZJoZ4XTm",0],["i9",600,"fort-lauderdale-office-for-rent-months/uqL7nujjZXf59Fyg958tzw",0],["f1",409,"fort-lauderdale-office-space-available/cqsjKix2maYH8y1cHKpDsb",0],["h4",729,"hollywood-professional-office-admin-and/wiXFYx8rhTvqYPdEgvCmKA",0],["f3",501,"fort-lauderdale-start-in-small-office/bMxAcDPRCSzNCQNqVHpetF",0],["a2",980,"miami-private-office-deal-10-off/1TLUKSrsXPtSBerQQK2R3Q",0],["h2",989,"hollywood-office-space-with-polished/hDRjk3HpLGPXcGggC7okWU",0],["f2",711,"fort-lauderdale-private-office-deal-20/wueUCCnNfUXEq8HaV21ZY2",0],["i1",444,"fort-lauderdale-suite-540-affordable/2xHjAz7ncCxTc15rwM3ymy",0],["i1",911,"fort-lauderdale-office-suite-for-lease/vfQ7SgTebXVyBDVva8hP3g",0],["i2",499,"pompano-beach-office-space-for-lease/whogragZTKbUSYd5rLagkz",0],["h1",614,"hollywood-small-private-office-with-25/5pGVW8z5JKLmpFabBCju7D",0],["a1",791,"miami-private-office-save-10-this-season/mnWiAh9hMjDYva3TCSF4d6",0],["i9",1000,"fort-lauderdale-office-for-rent-two/rd5DWjLFs55xcPLnmEfZCv",0],["h4",709,"hollywood-creative-office-space-calm/2v6G8vwRdRqa1LFsetRTEq",0],["f3",492,"fort-lauderdale-small-office-deal-15/wFUJfTBv3VyCSorg4hiXwS",0],["f2",703,"fort-lauderdale-private-office-save-20/md4dnpkfDMAMGPTU4Bmpp2",0],["a1",791,"miami-private-office-available-at-10-off/3tPFo4oM48ruHLYaDdKtjh",0],["h1",674,"hollywood-private-office-save-25/qsH44JDuKUqbFagcsmQNzS",0],["h2",969,"hollywood-office-space-wi-fi-utilities/oTztWKBT8nXRUR62rpG5Fn",0],["a2",881,"miami-private-office-save-10-this-season/6YxFvcow6UeCqcfTTpFbFv",0],["f1",399,"fort-lauderdale-private-office-for/aeJc4MqvTymoqaDc77rm1M",0],["i2",539,"pompano-beach-office-space-for-lease/eJewHwaFxdyib1SUmkwQg6",0],["i2",339,"pompano-beach-professional-office-space/2LGqhENH6UzgiCyNkZ7vy4",0],["a2",881,"miami-seasonal-discount-on-private/egkv5HkrCsAtdtoARHsdbC",0],["f1",399,"fort-lauderdale-office-space-wi-fi/6Xvj92YHab48VWGmrfmHG7",0],["f3",492,"fort-lauderdale-private-office-save-15/15zxHzvQz653JmYcJnbvih",0],["h2",969,"hollywood-inspiring-small-office-move/eaAEaSoBd5Lq9ZiqHfPxVh",0],["f2",703,"fort-lauderdale-seasonal-discount-on/hyy9U91PajuaSXBj4TS8FW",0],["a1",791,"miami-private-office-deal-10-off/9aA5oTyrUy9qmGkzyipWHN",0],["h4",709,"hollywood-private-small-office-with/njcUDJj3CybGffoZPCsAhH",0],["h1",674,"hollywood-small-office-deal-25-discount/wSqyjiUnLvXN2FyoZLJXsi",0],["i13",800,"fort-lauderdale-share-office-for-rent/9cSV5ta4WpeXMLhCiQXNgc",0],["f3",492,"fort-lauderdale-start-in-small-office/vVkeVsffLBHEETReug1ZMu",0],["b2",899,"boca-raton-private-office-for-legal-and/7tdxz4Fo2H567HCxBrm51X",0],["f2",703,"fort-lauderdale-private-office-deal-20/gaSkFg1D7PBu2nsA7hT7x2",0],["p1",669,"fort-lauderdale-all-inclusive-office/2JWMgPKcxdco1nFvYikiaK",0],["f5",949,"fort-lauderdale-startup-office-small/eY9JTJJ5Ppk9vRPgx4vyGi",0],["b3",535,"boca-raton-private-office-available-at/u2o1hirV669JZXZxoJRcDX",0],["n2",989,"miami-private-small-office-with/pW8NgVrb6yF6EpqfxFGbJE",0],["a2",881,"miami-private-office-deal-10-off/aQXhXXvgiHb9fE7xXzGF2k",0],["h4",709,"hollywood-office-space-available/72qG4bqr9WXNco8Kyk2L1D",0],["c1",929,"pompano-beach-office-space-with/pbyHWez3WDuYHVS4kPx12B",0],["f4",866,"fort-lauderdale-small-private-office/8Y1s9xERTDe79qCU89Z3L9",0],["n1",829,"miami-well-designed-workspace-quiet/fhDrrdFDpRui1fVEP851Dz",0],["a1",791,"miami-private-office-save-10-this-season/4uK3x21Tb3xzNPCA4GM9Zr",0],["h2",969,"hollywood-startup-office-small-space/sMuvcQh52hsU4SessfPoD2",0],["b1",579,"boca-raton-prestigious-office-full/wg5rA3QSftBzikhUAnxCqc",0],["f1",399,"fort-lauderdale-professional-small/p1paKD3EuqjGuB54EuSEr4",0],["h1",674,"hollywood-small-private-office-with-25/6PuYm3fKwrrW3fAsgZ2G7h",0],["i8",450,"fort-lauderdale-office-space-available/i2A6xccGbHUP9jrBqE2qQs",0],["d1",919,"delray-beach-office-space-available/t9aeARAbFnsnC9gWQcYyo1",0],["s1",799,"fort-lauderdale-office-space-with/bGPCe7UbqcZet2yDMEUdH1",0],["i2",399,"pompano-beach-pompano-beach-office/qFp1fTAnsX4tK5DgaWV3i7",0],["i2",999,"pompano-beach-4699-federal-highway/q8DKAGpP5oe8MieQk3ZWKT",0],["i7",699,"hollywood-executive-suites-in-downtown/uXiY6UhMFMTsCcdJJC9t9k",0],["i12",375,"executive-office-rental-suites-units/ur6jZkRdM8bCKkXAfjcWa1",0]];
+const CHANGES=["New: Deerfield Beach private office with private bathroom and entrance, $950 including utilities (posted today).","Gone: the $1,000 room in a psychologist’s suite (Commercial Blvd near SR 7).","Gone: the $319 Regus/HQ ad at 100 N Federal Hwy; its cheapest ad is now $368.","Most other “new” posts today are Regus/HQ and ZEN reposts at the same prices."];
+
+const $=id=>document.getElementById(id);
+const fmt$=n=>"$"+n.toLocaleString();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function miles(a,b,c,d){const R=3958.8,r=Math.PI/180,dl=(c-a)*r,dn=(d-b)*r;const x=Math.sin(dl/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+const SITES=Object.entries(S).map(([id,s])=>{
+  const ls=LST.filter(l=>l[0]===id).map(l=>({p:l[1],u:"https://www.craigslist.org/view/d/"+l[2],n:l[3]})).sort((a,b)=>a.p-b.p);
+  const pr=ls.filter(l=>l.p>1).map(l=>l.p);
+  return {id,name:s[0],addr:s[1],lat:s[2],lon:s[3],op:s[4],ph:s[5],hrs:s[6],hrsT:s[7],hi:s[8],ca:s[9],ls,
+    min:pr.length?Math.min(...pr):null,max:pr.length?Math.max(...pr):null,isNew:ls.some(l=>l.n),d:miles(HOME.lat,HOME.lon,s[2],s[3])};
+}).filter(s=>s.ls.length);
+const priceTxt=s=>s.min==null?"Call":s.min===s.max?fmt$(s.min):fmt$(s.min)+"–"+fmt$(s.max);
+
+let NOTES={};try{NOTES=JSON.parse(localStorage.getItem("bpo-notes")||"{}")}catch(e){}
+const saveNotes=()=>{try{localStorage.setItem("bpo-notes",JSON.stringify(NOTES))}catch(e){}};
+let PREF={op:"all",sort:"d",view:"near"};try{Object.assign(PREF,JSON.parse(localStorage.getItem("bpo-pref")||"{}"))}catch(e){}
+const savePref=()=>{try{localStorage.setItem("bpo-pref",JSON.stringify(PREF))}catch(e){}};
+
+function filtered(){
+  return SITES.filter(s=>(PREF.op==="all"||s.op===PREF.op)&&(!$("f-hours").checked||s.hrs==="ok")&&(!$("f-near").checked||s.d<=10))
+   .sort((a,b)=>PREF.sort==="d"?a.d-b.d:((a.min??1e9)-(b.min??1e9))||a.d-b.d);
+}
+
+// ---------- schematic map (SVG, no external tiles) ----------
+const K=Math.cos(26.1*Math.PI/180), LON0=-80.42, LAT0=26.47;
+const P=(lat,lon)=>[((lon-LON0)*K*1000),((LAT0-lat)*1000)];
+const COAST=[[26.50,-80.056],[26.46,-80.058],[26.40,-80.064],[26.35,-80.07],[26.32,-80.074],[26.26,-80.08],[26.20,-80.094],[26.15,-80.101],[26.12,-80.104],[26.09,-80.108],[26.05,-80.112],[26.01,-80.117],[25.98,-80.119],[25.94,-80.121],[25.90,-80.122],[25.85,-80.121],[25.82,-80.125]];
+const ROADS={"I-95":[[25.85,-80.20],[25.905,-80.18],[25.957,-80.168],[26.011,-80.168],[26.033,-80.1685],[26.047,-80.165],[26.08,-80.161],[26.122,-80.160],[26.167,-80.157],[26.20,-80.155],[26.232,-80.146],[26.27,-80.136],[26.318,-80.120],[26.365,-80.106],[26.458,-80.093],[26.50,-80.088]],
+ "Turnpike":[[25.93,-80.21],[25.97,-80.205],[26.012,-80.195],[26.063,-80.195],[26.084,-80.205],[26.137,-80.207],[26.188,-80.197],[26.23,-80.186],[26.27,-80.18],[26.32,-80.162],[26.37,-80.157],[26.46,-80.15],[26.50,-80.148]],
+ "I-595":[[26.08,-80.161],[26.083,-80.19],[26.085,-80.21],[26.09,-80.25],[26.10,-80.29],[26.105,-80.34],[26.103,-80.37]],
+ "I-75":[[25.93,-80.33],[26.00,-80.36],[26.103,-80.37],[26.15,-80.335]]};
+const CITIES=[["Fort Lauderdale",26.122,-80.137],["Hollywood",26.0,-80.135],["Pompano Beach",26.238,-80.125],["Boca Raton",26.368,-80.103],["Coral Springs",26.271,-80.271],["Plantation",26.128,-80.233],["Davie",26.063,-80.233],["Pembroke Pines",26.003,-80.30],["Miramar",25.975,-80.282],["Hallandale",25.981,-80.160],["Aventura",25.956,-80.139],["Sunrise",26.166,-80.256],["Weston",26.10,-80.395],["Delray Beach",26.461,-80.073],["Lauderhill",26.14,-80.213],["Deerfield",26.318,-80.10],["N. Miami",25.89,-80.186]];
+const VIEWS={near:{lat:[25.875,26.185],lon:[-80.345,-80.085]},all:{lat:[25.86,26.47],lon:[-80.42,-80.06]}};
+let selId=null;
+function drawMap(rows){
+  const v=VIEWS[PREF.view];const [x0,y1]=P(v.lat[0],v.lon[0]),[x1,y0]=P(v.lat[1],v.lon[1]);
+  const W=x1-x0,H=y1-y0,u=W/360; // u = one screen px at ~360px width
+  const svg=$("map");svg.setAttribute("viewBox",`${x0} ${y0} ${W} ${H}`);
+  const path=pts=>pts.map((p,i)=>{const [x,y]=P(p[0],p[1]);return (i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}).join(" ");
+  const land="M"+P(26.50,-80.45).join(" ")+" "+COAST.map(c=>"L"+P(c[0],c[1]).map(n=>n.toFixed(1)).join(" ")).join(" ")+" L"+P(25.82,-80.45).join(" ")+"Z";
+  let g=`<path d="${land}" fill="var(--land)"/>`;
+  g+=`<path d="${path([[25.957,-80.119],[25.957,-80.45]])}" stroke="var(--label)" stroke-width="${u}" stroke-dasharray="${4*u} ${4*u}" fill="none" opacity=".6"/>`;
+  g+=`<path d="${path([[26.325,-80.078],[26.325,-80.45]])}" stroke="var(--label)" stroke-width="${u}" stroke-dasharray="${4*u} ${4*u}" fill="none" opacity=".6"/>`;
+  for(const [n,pts] of Object.entries(ROADS)) g+=`<path d="${path(pts)}" stroke="var(--road)" stroke-width="${2.6*u}" fill="none" stroke-linejoin="round" opacity=".85"/>`;
+  [2,5,10].forEach(mi=>{const [hx,hy]=P(HOME.lat,HOME.lon);const r=mi/69*1000;g+=`<circle cx="${hx}" cy="${hy}" r="${r}" fill="none" stroke="var(--home)" stroke-width="${u}" stroke-dasharray="${3*u} ${3*u}" opacity=".6"/><text x="${hx}" y="${hy-r-2*u}" text-anchor="middle" font-size="${10*u}" fill="var(--home)" font-family="var(--mono)">${mi} mi</text>`;});
+  CITIES.forEach(([n,a,b])=>{const [x,y]=P(a,b);g+=`<text x="${x}" y="${y}" text-anchor="middle" font-size="${10.5*u}" fill="var(--label)" font-family="var(--sans)" paint-order="stroke" stroke="var(--land)" stroke-width="${3*u}">${n}</text>`;});
+  for(const [n,pts] of Object.entries(ROADS)){const m=pts[Math.floor(pts.length*({"I-595":0.6,"I-95":0.5,"Turnpike":0.25,"I-75":0.3})[n])];const [x,y]=P(m[0],m[1]);g+=`<g transform="translate(${x} ${y})"><rect x="${-14*u}" y="${-7*u}" width="${28*u}" height="${13*u}" rx="${3*u}" fill="var(--road)"/><text y="${3.5*u}" text-anchor="middle" font-size="${8.5*u}" fill="#fff" font-weight="600" font-family="var(--mono)">${n==="Turnpike"?"TPK":n}</text></g>`;}
+  // place pins, nudging overlapping ones outward with a leader line to the true spot
+  const [hx0,hy0]=P(HOME.lat,HOME.lon);const placed=[{x:hx0,y:hy0,r:13*u}];const pins=[];
+  rows.slice().sort((a,b)=>a.d-b.d).forEach(s=>{const [ox,oy]=P(s.lat,s.lon);const r=(s.ls.length>1?11:9)*u*(s.id===selId?1.25:1);
+    let x=ox,y=oy,k=0;while(k<60&&placed.some(p=>Math.hypot(p.x-x,p.y-y)<p.r+r+2*u)){k++;const a=k*2.4,rad=(r*2+2*u)*Math.sqrt(k)*0.8;x=ox+Math.cos(a)*rad;y=oy+Math.sin(a)*rad;}
+    placed.push({x,y,r});pins.push({s,x,y,ox,oy,r});});
+  pins.sort((a,b)=>(a.s.id===selId)-(b.s.id===selId)).forEach(({s,x,y,ox,oy,r})=>{
+    const lead=(x!==ox||y!==oy)?`<line x1="${ox}" y1="${oy}" x2="${x}" y2="${y}" stroke="var(--${s.op})" stroke-width="${1.2*u}"/><circle cx="${ox}" cy="${oy}" r="${2*u}" fill="var(--${s.op})"/>`:"";
+    g+=`<g class="pin" data-id="${s.id}" role="button" tabindex="0" aria-label="${esc(s.name)}" style="cursor:pointer">${lead}<circle cx="${x}" cy="${y}" r="${r+6*u}" fill="transparent"/><circle cx="${x}" cy="${y}" r="${r}" fill="var(--${s.op})" stroke="${s.hrs==='ok'?'var(--panel)':'var(--ask)'}" stroke-width="${2.5*u}"/><text x="${x}" y="${y+3.6*u}" text-anchor="middle" font-size="${10*u}" font-weight="600" fill="#fff" font-family="var(--mono)">${s.ls.length}</text></g>`;});
+  const selPin=pins.find(p=>p.s.id===selId);
+  const [hx,hy]=P(HOME.lat,HOME.lon);
+  g+=`<g><circle cx="${hx}" cy="${hy}" r="${12*u}" fill="var(--home)" stroke="var(--panel)" stroke-width="${3*u}"/><text x="${hx}" y="${hy+4.5*u}" text-anchor="middle" font-size="${13*u}" fill="#fff" font-weight="700">★</text></g>`;
+  if(selPin){const s=selPin.s;{const x=selPin.x,y=selPin.y;const t=s.name.length>30?s.name.slice(0,29)+"…":s.name;const w=(t.length*6.2+16)*u;const lx=Math.min(Math.max(x-w/2,x0+4*u),x1-w-4*u);
+    g+=`<g pointer-events="none"><rect x="${lx}" y="${y-38*u}" width="${w}" height="${20*u}" rx="${5*u}" fill="var(--ink)"/><text x="${lx+w/2}" y="${y-24*u}" text-anchor="middle" font-size="${11*u}" fill="var(--panel)" font-family="var(--sans)" font-weight="600">${esc(t)}</text></g>`;}}
+  svg.innerHTML=g;
+}
+$("map").addEventListener("click",e=>{const p=e.target.closest(".pin");if(!p)return;select(p.dataset.id,true);});
+$("map").addEventListener("keydown",e=>{if(e.key==="Enter"){const p=e.target.closest(".pin");if(p)select(p.dataset.id,true);}});
+
+// ---------- cards ----------
+function card(s){
+  const tel=s.ph?`<div class="phone"><span class="num">${esc(s.ph)}</span><button type="button" class="copy" data-copy="${esc(s.ph)}">Copy</button></div>`:"";
+  const dir=`https://www.google.com/maps/dir/?api=1&origin=${HOME.lat},${HOME.lon}&destination=${encodeURIComponent(s.addr.includes("not given")?s.lat+","+s.lon:s.addr)}`;
+  const gm=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.addr.includes("not given")?s.lat+","+s.lon:s.addr)}`;
+  return `<article class="card${s.id===selId?" sel":""}" id="c-${s.id}">
+   <div class="top"><div><h3>${esc(s.name)}</h3><div class="addr">${esc(s.addr)}</div></div>
+     <div class="price">${priceTxt(s)}<small>per month</small></div></div>
+   <div class="chips">
+     ${s.isNew?'<span class="chip c-new">New today</span>':""}
+     <span class="chip"><span class="dot" style="background:var(--${s.op});margin:0"></span>${s.op==="ind"?"Independent":"Regus / HQ"}</span>
+     <span class="chip ${s.hrs==='ok'?'c-ok':'c-ask'}">${s.hrs==='ok'?'Hours OK':'Ask hours'}</span>
+     <span class="chip"><span class="num" style="font-family:var(--mono)">${s.d.toFixed(1)}</span>&nbsp;mi</span>
+   </div>
+   <div class="hrs">${esc(s.hrsT)}</div>
+   <p class="txt">${esc(s.hi)}</p>
+   ${s.ca?`<p class="caut">${esc(s.ca)}</p>`:""}
+   ${tel}
+   <div class="acts">
+     ${s.ph?`<a class="btn pri" href="tel:${s.ph.replace(/\D/g,"")}">Call</a>`:`<a class="btn pri" href="${s.ls[0].u}" target="_blank" rel="noopener">Reply on CL</a>`}
+     <a class="btn" href="${dir}" target="_blank" rel="noopener">Directions</a>
+     <a class="btn" href="${gm}" target="_blank" rel="noopener">Google Maps</a>
+     <button type="button" class="btn" data-map="${s.id}">On map</button>
+   </div>
+   <details><summary>${s.ls.length} Craigslist listing${s.ls.length>1?"s":""} · notes</summary>
+     <div class="lst">${s.ls.map(l=>`<a class="${l.n?"n":""}" href="${l.u}" target="_blank" rel="noopener">${l.p>1?fmt$(l.p):"price?"}${l.n?" · new":""} ↗</a>`).join("")}</div>
+     <textarea id="note-${s.id}" aria-label="My notes for ${esc(s.name)}" placeholder="My notes">${esc(NOTES[s.id]||"")}</textarea>
+   </details>
+  </article>`;
+}
+function select(id,fromMap){
+  selId=id;const s=SITES.find(x=>x.id===id);
+  if(s&&PREF.view==="near"&&s.d>11){PREF.view="all";savePref();syncSeg();}
+  render();
+  const el=$("c-"+id);if(el&&fromMap)el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("list").addEventListener("click",e=>{
+  const c=e.target.closest("[data-copy]");if(c){const t=c.dataset.copy;const done=()=>{c.textContent="Copied";setTimeout(()=>c.textContent="Copy",1500)};
+    try{navigator.clipboard.writeText(t).then(done,()=>selectText(c))}catch(err){selectText(c)}return;}
+  const m=e.target.closest("[data-map]");if(m){selId=m.dataset.map;const s=SITES.find(x=>x.id===selId);if(s.d>11&&PREF.view==="near"){PREF.view="all";savePref();syncSeg();}render();$("map").scrollIntoView({behavior:"smooth",block:"center"});}
+});
+function selectText(btn){const n=btn.previousElementSibling;const r=document.createRange();r.selectNodeContents(n);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+$("list").addEventListener("input",e=>{if(e.target.matches("textarea")){NOTES[e.target.id.slice(5)]=e.target.value;saveNotes();}});
+
+function syncSeg(){
+  [["op-all","all"],["op-ind","ind"],["op-iwg","iwg"]].forEach(([id,v])=>$(id).setAttribute("aria-pressed",PREF.op===v));
+  $("s-d").setAttribute("aria-pressed",PREF.sort==="d");$("s-p").setAttribute("aria-pressed",PREF.sort==="p");
+  $("v-near").setAttribute("aria-pressed",PREF.view==="near");$("v-all").setAttribute("aria-pressed",PREF.view==="all");
+}
+[["op-all","op","all"],["op-ind","op","ind"],["op-iwg","op","iwg"],["s-d","sort","d"],["s-p","sort","p"],["v-near","view","near"],["v-all","view","all"]]
+ .forEach(([id,k,v])=>$(id).addEventListener("click",()=>{PREF[k]=v;savePref();syncSeg();render();}));
+["f-hours","f-near"].forEach(id=>$(id).addEventListener("change",render));
+
+function render(){
+  const rows=filtered();
+  // keep open <details> and focus stable across re-render
+  const open=new Set([...document.querySelectorAll("details[open]")].map(d=>d.closest(".card").id));
+  $("list").innerHTML=rows.map(card).join("")||'<div class="card">No buildings match these filters.</div>';
+  open.forEach(id=>{const d=document.querySelector("#"+id+" details");if(d)d.open=true;});
+  drawMap(rows);
+  $("stat").innerHTML=`<b>${rows.length}</b> buildings · <b>${rows.reduce((n,r)=>n+r.ls.length,0)}</b> listings`;
+}
+$("changes").innerHTML=CHANGES.map(c=>`<li>${esc(c)}</li>`).join("");
+syncSeg();render();
+</script>
